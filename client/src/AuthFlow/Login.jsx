@@ -7,6 +7,18 @@ import {
 } from 'react-router-dom';
 import styled from 'styled-components';
 
+const ImageContainer =styled.div`
+position: relative;
+height: 10%;
+
+
+`
+const Image = styled.div`
+
+
+
+
+`
 const Container = styled.div`
   position: relative;
   height: 100%;
@@ -14,28 +26,29 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  background-color: #0F4C81;
+  justify-content: space-evenly;
+  background-color: #11aff2;
 `;
 const Content = styled.section`
   position: relative;
   border: 1px solid black;
-  border-radius: 10px;
+  border-radius: 30px;
   display: flex;
   flex-direction: column;
-  align-self: center;
-  justify-content: spaced-evenly;
-  width: 30%;
-  height: 50%;
+  /* align-self: center; */
+  align-content: space-evenly;
+  width: 60%;
+  height: 35%;
   background-color: #FFFFFF;
+  padding: 20px;
 `
 const Header = styled.header`
   display: flex;
   width: 100%;
   align-items: center;
   justify-content: center;
-  margin: 0;
-  padding: 0;
+  margin: 0px;
+  padding: 0px;
 `;
 const H2 = styled.h2`
 
@@ -49,9 +62,10 @@ const Form = styled.form`
   justify-content: space-around;
   padding-top: 2%;
   padding-bottom: 2%;
-  border-top: 1px solid black;
-  border-radius: 10px;
+  border: 1px solid black;
+  border-radius: 30px;
   background-color: #F0F8FF;
+  opacity: 20%:
 `;
 const Field = styled.div`
   width: 80%;
@@ -101,10 +115,17 @@ const Login = () => {
 
   return (
     <Container>
+    <ImageContainer>
+    <Image>
+      <img src= 'https://images.unsplash.com/photo-1529156069898-49953e39b3ac?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=2089&q=80'/>
+    </Image>
+    </ImageContainer>
+
       {(!authContext.user) ?
         <Content>
+
           <Header>
-            <H2>Login</H2>
+            {/* <H2>Login</H2> */}
           </Header>
           <Form onSubmit={handleSubmit}>
             <Field>
