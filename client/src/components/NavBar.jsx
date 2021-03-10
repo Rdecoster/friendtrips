@@ -24,19 +24,42 @@ import DateRangeIcon from '@material-ui/icons/DateRange';
 import FlightIcon from '@material-ui/icons/Flight';
 import Button from '@material-ui/core/Button';
 
+
+import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
+
+const theme = createMuiTheme({
+  palette: {
+    primary: {
+      light: '#757ce8',
+      main: '#3f50b5',
+      dark: '#002884',
+      contrastText: '#fff',
+    },
+    secondary: {
+      light: '#ff7961',
+      main: '#f44336',
+      dark: '#ba000d',
+      contrastText: '#000',
+    },
+  },
+});
+
 const drawerWidth = 240;
 
 const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
+
   },
   appBar: {
     zIndex: theme.zIndex.drawer + 1,
-    background: 'rgb(17, 175, 242)',
+
   },
   drawer: {
+
     width: drawerWidth,
     flexShrink: 0,
+
   },
   drawerPaper: {
     width: drawerWidth,
@@ -60,12 +83,13 @@ const useStyles = makeStyles((theme) => ({
 
 const Container = styled.nav`
   position: relative;
-  display: flex;
+  /* display: flex; */
   flex-direction: column;
-  border: 1px solid black;
-  border-radius: 15px;
+  /* border: 1px solid black; */
+
   height: 100%;
   min-height: 100%;
+  width: 100px;
   min-width: 20%;
 `
 const Header = styled.header`
@@ -74,22 +98,19 @@ const Header = styled.header`
   align-items: center;
   text-align: left;
   justify-content: space-evenly;
-  border-bottom: 1px solid black;
   min-height: 10%;
-  border-top-left-radius: 15px;
-  border-top-right-radius: 15px;
   background-color: #ffe0ac;
 `;
-const H3 = styled.h3`
-  margin-bottom: 0;
-  color: white;
-  font-size: 24px;
-  text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
-`;
+// const H3 = styled.h3`
+//   margin-bottom: 0;
+//   color: white;
+//   font-size: 24px;
+//   text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+// `;
 
 const Select = styled.select`
-  width: 50%;
-  margin-bottom: 1%;
+  /* width: 50%; */
+  margin-bottom: 5px;
 `;
 
 const NavigationLinks = styled.div`
@@ -121,16 +142,16 @@ const NavigationLinks = styled.div`
 //   color: #6886c5;
 // `
 
-const Footer = styled.footer`
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+// const Footer = styled.footer`
+//   position: relative;
+//   display: flex;
+//   align-items: center;
+//   justify-content: center;
 
-  height: 10%;
-  border-bottom-left-radius: 15px;
-  border-bottom-right-radius: 15px;
-`;
+//   height: 10%;
+//   border-bottom-left-radius: 15px;
+//   border-bottom-right-radius: 15px;
+// `;
 
 
 const NavBar = () => {
@@ -142,6 +163,9 @@ const NavBar = () => {
 
   const classes = useStyles();
   return (
+    <ThemeProvider theme={theme}>
+
+
     <Container>
 
       <div className={classes.root}>
@@ -161,6 +185,7 @@ const NavBar = () => {
           variant="permanent"
           classes={{
             paper: classes.drawerPaper,
+
           }}
         >
           <Toolbar />
@@ -168,13 +193,13 @@ const NavBar = () => {
 
           <div className={classes.drawerContainer}>
             <List>
-            <ListItem>
-            <Typography variant="h6" color="inherit">
-            Welcome back{(authContext.username) ? ', ' + authContext.username : null}!
+              <ListItem>
+                <Typography variant="h6" color="inherit">
+                  Welcome back{(authContext.username) ? ', ' + authContext.username : null}!
 
     </Typography>
-            </ListItem>
-            <Divider />
+              </ListItem>
+              <Divider />
               <ListItem>
                 <Select>
                   {appContext.tripList.map((trip, i) => {
@@ -219,13 +244,14 @@ const NavBar = () => {
 
         </Drawer>
         <main className={classes.content}>
-        <Toolbar />
+          <Toolbar />
 
 
-      </main>
+        </main>
       </div>
 
     </Container>
+    </ThemeProvider>
   );
 };
 
