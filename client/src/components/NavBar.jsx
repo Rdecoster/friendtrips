@@ -4,6 +4,10 @@ import { AuthContext } from '../components/providers/AuthenticationProvider.jsx'
 import { ApplicationContext } from '../components/providers/ApplicationProvider.jsx';
 import { Link } from 'react-router-dom';
 
+
+
+
+
 const Container = styled.nav`
   position: relative;
   display: flex;
