@@ -29,8 +29,8 @@ const Container = styled.div`
   justify-content: space-around;
   align-items: center;
   position: relative;
-  background-color: #6886c5;
-  border: 1px solid black;
+  /* background-color: #6886c5; */
+  /* border: 1px solid black; */
 `;
 
 const Section = styled.section`
@@ -38,7 +38,7 @@ const Section = styled.section`
   height: 100%;
   margin-left: 2%;
   flex-grow: 1;
-  border: 1px solid black;
+  /* border: 1px solid black; */
   border-radius: 15px;
   background-color: #f9f9f9;
 `;
@@ -50,7 +50,7 @@ const FriendTrips = () => {
     <ApplicationProvider>
       <Router>
         <Container>
-          <NavBar></NavBar>
+          <NavBar> </NavBar>
           <Section>
             <Switch>
 
@@ -69,6 +69,7 @@ const FriendTrips = () => {
 
             </Switch>
           </Section>
+
         </Container>
       </Router>
     </ApplicationProvider>

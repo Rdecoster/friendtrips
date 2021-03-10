@@ -15,8 +15,7 @@ import Divider from '@material-ui/core/Divider';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
-import InboxIcon from '@material-ui/icons/MoveToInbox';
-import MailIcon from '@material-ui/icons/Mail';
+
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import ChatIcon from '@material-ui/icons/Chat';
 import HotelIcon from '@material-ui/icons/Hotel';
@@ -95,22 +94,23 @@ const NavigationLinks = styled.div`
   height: 80%;
 
 `;
-const UL = styled.ul`
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  position: relative;
-  height: 80%;
-`
-const LI = styled.li`
-  height: 10%;
-  margin: 1%;
-  border: 1px solid black;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: #f9f9f9;
-`
+
+// const UL = styled.ul`
+//   list-style: none;
+//   padding: 0;
+//   margin: 0;
+//   position: relative;
+//   height: 80%;
+// `
+// const LI = styled.li`
+//   height: 10%;
+//   margin: 1%;
+//   border: 1px solid black;
+//   display: flex;
+//   align-items: center;
+//   justify-content: center;
+//   background-color: #f9f9f9;
+// `
 // const Button = styled.button`
 //   height: 40%;
 //   width: 50%;
@@ -146,13 +146,12 @@ const NavBar = () => {
         <CssBaseline />
         <AppBar position="fixed" className={classes.appBar}>
           <Toolbar>
-            <Header>
+
+            <Typography variant="h6" noWrap>
+
               <H3>Welcome back{(authContext.username) ? ', ' + authContext.username : null}!</H3>
 
-            </Header>
-            <Typography variant="h6" noWrap>
-              Clipped drawer
-          </Typography>
+            </Typography>
           </Toolbar>
         </AppBar>
         <Drawer
@@ -163,16 +162,22 @@ const NavBar = () => {
           }}
         >
           <Toolbar />
-          <div className={classes.drawerContainer}>
-            <Select>
-              {appContext.tripList.map((trip, i) => {
-                return (
-                  <option key={`trip-${i}`} value={trip.id}>{trip.name}</option>
-                )
-              })}
-            </Select>
 
+
+          <div className={classes.drawerContainer}>
             <List>
+
+              <ListItem>
+                <Select>
+                  {appContext.tripList.map((trip, i) => {
+                    return (
+                      <option key={`trip-${i}`} value={trip.id}>{trip.name}</option>
+                    )
+                  })}
+                </Select>
+              </ListItem>
+              <Divider />
+
               {['chats', 'flights', 'hotels', 'itinerary'].map((text, index) => (
 
                 <ListItem button key={text}>
@@ -188,10 +193,14 @@ const NavBar = () => {
             </List>
             <Divider />
             <List>
-              <ListItem>
-                <Button className={classes.button} variant="outlined" color="primary" onClick={authContext.signOut}>
+              <ListItem button onClick={authContext.signOut} >
+                <ListItemIcon>
+                  {/* <Button className={classes.button} variant="outlined" color="primary" onClick={authContext.signOut}>
                   LOG OUT
-                  </Button>
+                  </Button> */}
+                  <ExitToAppIcon />
+                  <ListItemText primary='   Log Out' />
+                </ListItemIcon>
               </ListItem>
             </List>
 
