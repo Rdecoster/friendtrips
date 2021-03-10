@@ -4,7 +4,56 @@ import { AuthContext } from '../components/providers/AuthenticationProvider.jsx'
 import { ApplicationContext } from '../components/providers/ApplicationProvider.jsx';
 import { Link } from 'react-router-dom';
 
+import { makeStyles } from '@material-ui/core/styles';
+import Drawer from '@material-ui/core/Drawer';
+import AppBar from '@material-ui/core/AppBar';
+import CssBaseline from '@material-ui/core/CssBaseline';
+import Toolbar from '@material-ui/core/Toolbar';
+import List from '@material-ui/core/List';
+import Typography from '@material-ui/core/Typography';
+import Divider from '@material-ui/core/Divider';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemIcon from '@material-ui/core/ListItemIcon';
+import ListItemText from '@material-ui/core/ListItemText';
+import InboxIcon from '@material-ui/icons/MoveToInbox';
+import MailIcon from '@material-ui/icons/Mail';
+import ExitToAppIcon from '@material-ui/icons/ExitToApp';
+import ChatIcon from '@material-ui/icons/Chat';
+import HotelIcon from '@material-ui/icons/Hotel';
+import DateRangeIcon from '@material-ui/icons/DateRange';
+import FlightIcon from '@material-ui/icons/Flight';
+import Button from '@material-ui/core/Button';
+const drawerWidth = 240;
 
+const useStyles = makeStyles((theme) => ({
+  root: {
+    display: 'flex',
+  },
+  appBar: {
+    zIndex: theme.zIndex.drawer + 1,
+    background: 'rgb(17, 175, 242)',
+  },
+  drawer: {
+    width: drawerWidth,
+    flexShrink: 0,
+  },
+  drawerPaper: {
+    width: drawerWidth,
+  },
+  drawerContainer: {
+    overflow: 'auto',
+  },
+  content: {
+
+    flexGrow: 1,
+    padding: theme.spacing(3),
+  },
+  button: {
+    margin: 'auto',
+
+  }
+
+}));
 
 
 
@@ -44,7 +93,7 @@ const Select = styled.select`
 
 const NavigationLinks = styled.div`
   height: 80%;
-  background-color: #ffacb7;
+
 `;
 const UL = styled.ul`
   list-style: none;
@@ -62,19 +111,20 @@ const LI = styled.li`
   justify-content: center;
   background-color: #f9f9f9;
 `
-const Button = styled.button`
-  height: 40%;
-  width: 50%;
-  background-color: #f9f9f9;
-  border: 2px solid #6886c5;
-  color: #6886c5;
-`
+// const Button = styled.button`
+//   height: 40%;
+//   width: 50%;
+//   background-color: #f9f9f9;
+//   border: 2px solid #6886c5;
+//   color: #6886c5;
+// `
+
 const Footer = styled.footer`
   position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #ffacb7;
+
   height: 10%;
   border-bottom-left-radius: 15px;
   border-bottom-right-radius: 15px;
@@ -87,38 +137,73 @@ const NavBar = () => {
   const linkStyle = {
 
   }
+
+  const classes = useStyles();
   return (
     <Container>
-      <Header>
-        <H3>Welcome back{(authContext.username) ? ', ' + authContext.username : null}!</H3>
-        <Select>
-          {appContext.tripList.map((trip, i)=>{
-            return (
-              <option key={`trip-${i}`} value={trip.id}>{trip.name}</option>
-            )
-          })}
-        </Select>
-      </Header>
 
-      <NavigationLinks>
-        <UL >
-          <LI>
-            <Link to="/chat">Chat</Link>
-          </LI>
-          <LI>
-            <Link to="/flights">Flights</Link>
-          </LI>
-          <LI>
-            <Link to="/hotels">Hotels</Link>
-          </LI>
-          <LI>
-            <Link to="/itinerary">Itinerary Builder</Link>
-          </LI>
-        </UL>
-      </NavigationLinks>
-      <Footer>
-        <Button onClick={authContext.signOut}>Log out</Button>
-      </Footer>
+      <div className={classes.root}>
+        <CssBaseline />
+        <AppBar position="fixed" className={classes.appBar}>
+          <Toolbar>
+            <Header>
+              <H3>Welcome back{(authContext.username) ? ', ' + authContext.username : null}!</H3>
+
+            </Header>
+            <Typography variant="h6" noWrap>
+              Clipped drawer
+          </Typography>
+          </Toolbar>
+        </AppBar>
+        <Drawer
+          className={classes.drawer}
+          variant="permanent"
+          classes={{
+            paper: classes.drawerPaper,
+          }}
+        >
+          <Toolbar />
+          <div className={classes.drawerContainer}>
+            <Select>
+              {appContext.tripList.map((trip, i) => {
+                return (
+                  <option key={`trip-${i}`} value={trip.id}>{trip.name}</option>
+                )
+              })}
+            </Select>
+
+            <List>
+              {['chats', 'flights', 'hotels', 'itinerary'].map((text, index) => (
+
+                <ListItem button key={text}>
+                  <ListItemIcon>{index === 0 ? <ChatIcon />
+                    : index === 1 ? <FlightIcon />
+                      : index === 2 ? <HotelIcon />
+                        : <DateRangeIcon />
+                  }
+                  </ListItemIcon>
+                  <Link to={`/${text}`}><ListItemText primary={text.toUpperCase()} /></Link>
+                </ListItem>
+              ))}
+            </List>
+            <Divider />
+            <List>
+              <ListItem>
+                <Button className={classes.button} variant="outlined" color="primary" onClick={authContext.signOut}>
+                  LOG OUT
+                  </Button>
+              </ListItem>
+            </List>
+
+
+
+
+          </div>
+
+        </Drawer>
+
+      </div>
+
     </Container>
   );
 };
