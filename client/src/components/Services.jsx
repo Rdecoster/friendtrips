@@ -1,18 +1,14 @@
 import React, { useState, useEffect, useContext } from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
-
 import { ApplicationProvider, ApplicationContext } from '../components/providers/ApplicationProvider.jsx';
-import { AuthContext } from '../components/providers/AuthenticationProvider.jsx';
-
-
 import Page from './Page.jsx'
 import Chat from '../GroupChat/Chat.jsx';
 import ItineraryBuilder from '../ItineraryBuilder/ItineraryBuilder.jsx';
 import Flights from '../Flights/Flights.jsx';
 import Hotels from '../Hotels/Hotels.jsx';
 import Welcome from './Welcome.jsx';
-import Services from './Services.jsx';
+
 import {
   HashRouter as Router,
   Switch,
@@ -24,7 +20,6 @@ import {
 } from 'react-router-dom';
 
 import NavBar from './NavBar.jsx';
-
 
 const Container = styled.div`
   display: flex;
@@ -48,20 +43,12 @@ const Section = styled.section`
   background-color: #f9f9f9;
 `;
 
-const FriendTrips = () => {
+const Services = () => {
 
 
   return (
-    <ApplicationProvider>
-      <Router>
-        <Container>
 
-
-          <NavBar></NavBar>
-          <Services />
-
-          {/* <Section>
-
+          <Section>
             <Switch>
 
               <Route exactly path="/itinerary">
@@ -78,11 +65,9 @@ const FriendTrips = () => {
               </Route>
 
             </Switch>
-          </Section> */}
-        </Container>
-      </Router>
-    </ApplicationProvider>
+            </Section>
+
   );
 };
 
-export default FriendTrips;
+export default Services;

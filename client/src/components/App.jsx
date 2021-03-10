@@ -9,6 +9,8 @@ import Login from '../AuthFlow/Login.jsx';
 import SignUp from '../AuthFlow/Signup.jsx';
 import FriendTrips from './FriendTrips.jsx';
 
+
+
 import {
   BrowserRouter as Router,
   Switch,
@@ -88,6 +90,7 @@ const App = () => {
             <Route path="/login" component={Login} />
             <Route path="/signup" component={SignUp} />
             <PrivateRoute path="/home">
+
               <FriendTrips/>
             </PrivateRoute>
           </Switch>

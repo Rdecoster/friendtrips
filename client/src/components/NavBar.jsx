@@ -16,12 +16,14 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 
+
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import ChatIcon from '@material-ui/icons/Chat';
 import HotelIcon from '@material-ui/icons/Hotel';
 import DateRangeIcon from '@material-ui/icons/DateRange';
 import FlightIcon from '@material-ui/icons/Flight';
 import Button from '@material-ui/core/Button';
+
 const drawerWidth = 240;
 
 const useStyles = makeStyles((theme) => ({
@@ -144,7 +146,7 @@ const NavBar = () => {
 
       <div className={classes.root}>
         <CssBaseline />
-        <AppBar position="fixed" className={classes.appBar}>
+        {/* <AppBar position="fixed" className={classes.appBar}>
           <Toolbar>
 
             <Typography variant="h6" noWrap>
@@ -153,7 +155,7 @@ const NavBar = () => {
 
             </Typography>
           </Toolbar>
-        </AppBar>
+        </AppBar> */}
         <Drawer
           className={classes.drawer}
           variant="permanent"
@@ -166,7 +168,13 @@ const NavBar = () => {
 
           <div className={classes.drawerContainer}>
             <List>
+            <ListItem>
+            <Typography variant="h6" color="inherit">
+            Welcome back{(authContext.username) ? ', ' + authContext.username : null}!
 
+    </Typography>
+            </ListItem>
+            <Divider />
               <ListItem>
                 <Select>
                   {appContext.tripList.map((trip, i) => {
@@ -210,7 +218,11 @@ const NavBar = () => {
           </div>
 
         </Drawer>
+        <main className={classes.content}>
+        <Toolbar />
 
+
+      </main>
       </div>
 
     </Container>
